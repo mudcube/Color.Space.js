@@ -30,13 +30,13 @@ if (typeof(Color.Space) === "undefined") Color.Space = {};
 
 (function () {
 
-var DEG_RAD = Math.PI / 180;
-var RAD_DEG = 1 / DEG_RAD;
-
-var functions = {};
+var functions = {
+	// holds generated cached conversion functions.
+};
 var shortcuts = {
-	"HEX>HSLA": "HEX24>RGBA>HSLA",
-	"HEX>CMYK": "HEX>RGB>CMY>CMYK",
+	"HEX24>HSL": "HEX24>RGB>HSL",
+	"HEX32>HSLA": "HEX32>RGBA>HSLA",
+	"HEX24>CMYK": "HEX24>RGB>CMY>CMYK",
 	"RGB>CMYK": "RGB>CMY>CMYK"
 };
 

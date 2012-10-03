@@ -11,7 +11,8 @@ RGBA &lt;-&gt; W3
 Examples
 ----------------------------------------------------
 Color.Space(0x99ff0000, "HEX32&gt;RGBA&gt;HSLA&gt;W3"); // outputs "hsla(60,100%,17%,0.6)"
-Color.Space(0xFF0000, "HEX24&gt;RGB&gt;HSL"); // convert hex24 to HSL object.
+Color.Space(0xFF0000, "HEX24&gt;RGB&gt;HSL"); // convert HEX24 to HSL object.
+Color.Space("hsla(120, 100%, 50%, 1)", "W3&gt;HSLA"); // convert W3 string to HSLA object.
 ----------------------------------------------------
 W3 values
 ----------------------------------------------------
