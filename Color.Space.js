@@ -92,22 +92,22 @@ root.RGBA_W3 = function(o) {
 };
 
 root.W3_RGB = function(o) {
-	var o = o.substr(4, o.length - 5).split(",");
+	o = o.substr(4, o.length - 5).split(",");
 	return {
-		R: parseInt(o[0]),
-		G: parseInt(o[1]),
-		B: parseInt(o[2])
-	}
+		R: parseInt(o[0], 10),
+		G: parseInt(o[1], 10),
+		B: parseInt(o[2], 10)
+	};
 };
 
 root.W3_RGBA = function(o) {
-	var o = o.substr(5, o.length - 6).split(",");
+	o = o.substr(5, o.length - 6).split(",");
 	return {
-		R: parseInt(o[0]),
-		G: parseInt(o[1]),
-		B: parseInt(o[2]),
+		R: parseInt(o[0], 10),
+		G: parseInt(o[1], 10),
+		B: parseInt(o[2], 10),
 		A: parseFloat(o[3]) * 255
-	}
+	};
 };
 
 // W3C - HSL + HSLA
@@ -122,22 +122,26 @@ root.HSLA_W3 = function(o) {
 };
 
 root.W3_HSL = function(o) {
-	var o = o.substr(4, o.length - 5).split(",");
+	var start = o.indexOf("(") + 1;
+	var end = o.indexOf(")");
+	o = o.substr(start, end - start).split(",");
 	return {
-		H: parseInt(o[0]),
-		S: parseInt(o[1]),
-		L: parseInt(o[2])
-	}
+		H: parseInt(o[0], 10),
+		S: parseInt(o[1], 10),
+		L: parseInt(o[2], 10)
+	};
 };
 
 root.W3_HSLA = function(o) {
-	var o = o.substr(5, o.length - 6).split(",");
+	var start = o.indexOf("(") + 1;
+	var end = o.indexOf(")");
+	o = o.substr(start, end - start).split(",");
 	return {
-		H: parseInt(o[0]),
-		S: parseInt(o[1]),
-		L: parseInt(o[2]),
-		A: parseFloat(o[3]) * 255
-	}
+		H: parseInt(o[0], 10),
+		S: parseInt(o[1], 10),
+		L: parseInt(o[2], 10),
+		A: parseFloat(o[3], 10) * 255
+	};
 };
 
 // W3 HEX = "FFFFFF" | "FFFFFFFF"
@@ -146,15 +150,15 @@ root.W3_HEX =
 root.W3_HEX24 = function (o) {
 	if (o.substr(0, 1) === "#") o = o.substr(1);
 	if (o.length === 3) o = o[0] + o[0] + o[1] + o[1] + o[2] + o[2];
-	return parseInt("0x" + o);
+	return parseInt("0x" + o, 10);
 };
 
 root.W3_HEX32 = function (o) {
 	if (o.substr(0, 1) === "#") o = o.substr(1);
 	if (o.length === 6) {
-		return parseInt("0xFF" + o);
+		return parseInt("0xFF" + o, 10);
 	} else {
-		return parseInt("0x" + o);
+		return parseInt("0x" + o, 10);
 	}
 };
 
@@ -164,15 +168,16 @@ root.HEX_W3 =
 root.HEX24_W3 = function (o, maxLength) {
 	if (!maxLength) maxLength = 6;
 	if (!o) o = 0;
+	var n;
 	var z = o.toString(16);
 	// when string is lesser than maxLength
-	var n = z.length;
+	n = z.length;
 	while (n < maxLength) {
 		z = "0" + z;
 		n++;
 	}
 	// when string is greater than maxLength
-	var n = z.length;
+	n = z.length;
 	while (n > maxLength) {
 		z = z.substr(1);
 		n--;
