@@ -150,7 +150,7 @@ root.W3_HEX =
 root.W3_HEX24 = function (o) {
 	if (o.substr(0, 1) === "#") o = o.substr(1);
 	if (o.length === 3) o = o[0] + o[0] + o[1] + o[1] + o[2] + o[2];
-	return parseInt("0x" + o, 10);
+	return parseInt("0x" + o, 16);
 };
 
 root.W3_HEX32 = function (o) {
@@ -158,7 +158,7 @@ root.W3_HEX32 = function (o) {
 	if (o.length === 6) {
 		return parseInt("0xFF" + o, 10);
 	} else {
-		return parseInt("0x" + o, 10);
+		return parseInt("0x" + o, 16);
 	}
 };
 
